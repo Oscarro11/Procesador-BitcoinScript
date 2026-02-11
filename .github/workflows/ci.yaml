@@ -18,5 +18,8 @@ jobs:
           java-version: 17
           cache: maven
 
-      - name: Build and Test
-        run: mvn clean verify
+      - name: Build code
+        run: mvn clean compile
+
+      - name: Test code
+        run: mvn test
