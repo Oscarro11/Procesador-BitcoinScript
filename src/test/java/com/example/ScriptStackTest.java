@@ -13,26 +13,26 @@ import org.junit.jupiter.api.Test;
 
 public class ScriptStackTest 
 {
-    AbstractQueue<Byte[]> queue = new ScriptStack();
+    AbstractQueue<byte[]> queue = new ScriptStack();
 
     @BeforeEach
     public void setUp(){
-        queue.add(new Byte[]{1});
-        queue.add(new Byte[]{2});
-        queue.add(new Byte[]{3});
-        queue.add(new Byte[]{4});
+        queue.add(new byte[]{1});
+        queue.add(new byte[]{2});
+        queue.add(new byte[]{3});
+        queue.add(new byte[]{4});
     }
 
     @Test
     public void iterator(){
-        ArrayList<Byte[]> queueElements = new ArrayList<Byte[]>();
+        ArrayList<byte[]> queueElements = new ArrayList<byte[]>();
         queue.forEach(queueElements :: add);
 
-        ArrayList<Byte[]> resultado = new ArrayList<Byte[]>();
-        resultado.add(new Byte[]{4});
-        resultado.add(new Byte[]{3});
-        resultado.add(new Byte[]{2});
-        resultado.add(new Byte[]{1});
+        ArrayList<byte[]> resultado = new ArrayList<byte[]>();
+        resultado.add(new byte[]{4});
+        resultado.add(new byte[]{3});
+        resultado.add(new byte[]{2});
+        resultado.add(new byte[]{1});
 
         for (int i = 0; i < queueElements.size(); i++) {
             assertArrayEquals(queueElements.get(i), resultado.get(i));
@@ -41,16 +41,16 @@ public class ScriptStackTest
 
     @Test
     public void forEach(){
-        ArrayList<Byte[]> queueElements = new ArrayList<Byte[]>();
+        ArrayList<byte[]> queueElements = new ArrayList<byte[]>();
         queue.forEach(queueElements :: add);
 
-        BlockingDeque<Byte[]> deque = new LinkedBlockingDeque<Byte[]>();
-        deque.add(new Byte[]{1});
-        deque.add(new Byte[]{2});
-        deque.add(new Byte[]{3});
-        deque.add(new Byte[]{4});
+        BlockingDeque<byte[]> deque = new LinkedBlockingDeque<byte[]>();
+        deque.add(new byte[]{1});
+        deque.add(new byte[]{2});
+        deque.add(new byte[]{3});
+        deque.add(new byte[]{4});
 
-        ArrayList<Byte[]> dequeElements = new ArrayList<Byte[]>();
+        ArrayList<byte[]> dequeElements = new ArrayList<byte[]>();
         deque.descendingIterator().forEachRemaining(dequeElements :: add);
 
         for (int i = 0; i < queueElements.size(); i++) {

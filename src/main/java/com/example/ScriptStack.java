@@ -7,20 +7,20 @@ import java.util.function.Consumer;
 /**
  * A blocking deque based on linked nodes for {@code Integer}, who has a forced LIFO ordering policy.
  */
-public class ScriptStack extends LinkedBlockingDeque<Byte[]>{
+public class ScriptStack extends LinkedBlockingDeque<byte[]>{
     
     @Override
-    public Iterator<Byte[]> iterator() {
+    public Iterator<byte[]> iterator() {
         return super.descendingIterator();
     }
 
     @Override
-    public void forEach(Consumer<? super Byte[]> action) {
+    public void forEach(Consumer<? super byte[]> action) {
         super.descendingIterator().forEachRemaining(action);
     }
 
     @Override
-    public Byte[] getLast() {
+    public byte[] getLast() {
         return null;
     }
 }
