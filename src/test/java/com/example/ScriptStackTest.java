@@ -1,5 +1,7 @@
 package com.example;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import java.util.AbstractQueue;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingDeque;
@@ -11,45 +13,49 @@ import org.junit.jupiter.api.Test;
 
 public class ScriptStackTest 
 {
-    AbstractQueue<Integer> queue = new ScriptStack();
+    AbstractQueue<Byte[]> queue = new ScriptStack();
 
     @BeforeEach
     public void setUp(){
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
+        queue.add(new Byte[]{1});
+        queue.add(new Byte[]{2});
+        queue.add(new Byte[]{3});
+        queue.add(new Byte[]{4});
     }
 
     @Test
     public void iterator(){
-        ArrayList<Integer> queueElements = new ArrayList<Integer>();
+        ArrayList<Byte[]> queueElements = new ArrayList<Byte[]>();
         queue.forEach(queueElements :: add);
 
-        ArrayList<Integer> resultado = new ArrayList<Integer>();
-        resultado.add(4);
-        resultado.add(3);
-        resultado.add(2);
-        resultado.add(1);
+        ArrayList<Byte[]> resultado = new ArrayList<Byte[]>();
+        resultado.add(new Byte[]{4});
+        resultado.add(new Byte[]{3});
+        resultado.add(new Byte[]{2});
+        resultado.add(new Byte[]{1});
 
-        Assertions.assertEquals(resultado, queueElements);
+        for (int i = 0; i < queueElements.size(); i++) {
+            assertArrayEquals(queueElements.get(i), resultado.get(i));
+        }
     }
 
     @Test
     public void forEach(){
-        ArrayList<Integer> queueElements = new ArrayList<Integer>();
+        ArrayList<Byte[]> queueElements = new ArrayList<Byte[]>();
         queue.forEach(queueElements :: add);
 
-        BlockingDeque<Integer> deque = new LinkedBlockingDeque<Integer>();
-        deque.add(1);
-        deque.add(2);
-        deque.add(3);
-        deque.add(4);
+        BlockingDeque<Byte[]> deque = new LinkedBlockingDeque<Byte[]>();
+        deque.add(new Byte[]{1});
+        deque.add(new Byte[]{2});
+        deque.add(new Byte[]{3});
+        deque.add(new Byte[]{4});
 
-        ArrayList<Integer> dequeElements = new ArrayList<Integer>();
+        ArrayList<Byte[]> dequeElements = new ArrayList<Byte[]>();
         deque.descendingIterator().forEachRemaining(dequeElements :: add);
 
-        Assertions.assertEquals(dequeElements, queueElements);
+        for (int i = 0; i < queueElements.size(); i++) {
+            assertArrayEquals(queueElements.get(i), dequeElements.get(i));
+        }
     }
 
     @Test
