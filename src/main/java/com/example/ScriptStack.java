@@ -1,26 +1,31 @@
 package com.example;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.function.Consumer;
 
-/**
- * A blocking deque based on linked nodes for {@code Integer}, who has a forced LIFO ordering policy.
- */
-public class ScriptStack extends LinkedBlockingDeque<byte[]>{
-    
-    @Override
-    public Iterator<byte[]> iterator() {
-        return super.descendingIterator();
+public class ScriptStack extends LinkedBlockingDeque<byte[]> {
+
+    // PUSH arriba del stack
+    public void pushItem(byte[] item) {
+        super.addLast(item);
     }
 
-    @Override
-    public void forEach(Consumer<? super byte[]> action) {
-        super.descendingIterator().forEachRemaining(action);
+    // POP desde arriba
+    public byte[] popItem() {
+        return super.removeLast();
     }
 
-    @Override
-    public byte[] getLast() {
-        return null;
+    // PEEK arriba
+    public byte[] peekItem() {
+        return super.peekLast();
+    }
+
+    public void printStackState() {
+        System.out.println("Stack state:");
+        Iterator<byte[]> it = super.descendingIterator();
+        while (it.hasNext()) {
+            System.out.println(Arrays.toString(it.next()));
+        }
     }
 }
