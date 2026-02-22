@@ -3,6 +3,7 @@ package com.example;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.Arrays;
 
 import com.example.OPCODES.OPCODE;
 
@@ -10,7 +11,8 @@ public class Controlador {
     private ScriptStack stack = new ScriptStack();
     private ConvertBytesToOP convertidorFirma;
     private ConvertBytesToOP convertidorLlave;
-    
+    private boolean traceMode = false;
+
     public void obtenerFirmaYLlave(String rutaFirma, String rutaLlave){
         byte[] firma = null;
         byte[] llavePublica = null;
@@ -27,11 +29,12 @@ public class Controlador {
         convertidorLlave = new ConvertBytesToOP(llavePublica);
     }
 
-    public boolean evaluarTransaccion() throws IllegalStateException{
+    public boolean evaluarTransaccion(boolean traceMode) throws IllegalStateException{
         if (convertidorFirma == null || convertidorLlave == null) {
             throw new IllegalStateException("No se han elegido los archivos de donde provienen la llave publica ni la firma");
         }
-        
+
+        this.traceMode = traceMode;        
         stack.clear();
 
         List<byte[]> dataToPushFirma = convertidorFirma.getDataToPush();
@@ -42,10 +45,10 @@ public class Controlador {
         for (OPCODE opcode : opcodesFirma) {
             try {
                 if (OPCODE.isPUSHDATA(opcode)) {
-                    opcode.aplicar(dataToPushFirma.remove(0), stack);
+                    execute(opcode, dataToPushFirma.remove(0), stack);
                 }
                 else{
-                    opcode.aplicar(null, stack);
+                    execute(opcode, null, stack);
                 }   
             } catch (Exception e) {
                 return false;
@@ -55,16 +58,25 @@ public class Controlador {
         for (OPCODE opcode : opcodesLlave) {
             try {
                 if (OPCODE.isPUSHDATA(opcode)) {
-                    opcode.aplicar(dataToPushLlave.remove(0), stack);
+                    execute(opcode, dataToPushLlave.remove(0), stack);
                 }
                 else{
-                    opcode.aplicar(null, stack);
+                    execute(opcode, null, stack);
                 }   
             } catch (Exception e) {
                 return false;
             }
         }
 
-        return true;
+        return (stack.size() == 1 && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
+    }
+
+    private void execute(OPCODE opcode, byte[] data, ScriptStack stack) throws Exception {
+        opcode.aplicar(data, stack);
+
+        if (traceMode) {
+            System.out.println(opcode.name());
+            stack.printStackState();
+        }
     }
 }

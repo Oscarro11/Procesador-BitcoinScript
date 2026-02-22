@@ -13,6 +13,6 @@ public class ControladorTest {
 
         controlador.obtenerFirmaYLlave(rutaFirma, rutaLlave);
 
-        Assertions.assertTrue(controlador.evaluarTransaccion());
+        Assertions.assertTrue(controlador.evaluarTransaccion(false));
     }
 }
