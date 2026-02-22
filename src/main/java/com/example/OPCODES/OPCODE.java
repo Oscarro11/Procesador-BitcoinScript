@@ -228,4 +228,8 @@ public enum OPCODE {
             throw new IllegalArgumentException("Codigo no valido: " + code);
         return op;
     }
+
+    public static boolean isPUSHDATA(OPCODE op){
+        return (op.equals(OPCODE.OP_PUSHDATA1) || op.equals(OPCODE.OP_PUSHDATA2) || op.equals(OPCODE.OP_PUSHDATA4)); 
+    }
 }
