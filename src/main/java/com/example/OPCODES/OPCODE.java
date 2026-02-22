@@ -126,7 +126,21 @@ public enum OPCODE {
        } 
     },
 
-    PUSHDATA((byte) 0x4c){
+    OP_PUSHDATA1((byte) 0x4c){
+        @Override
+        public void aplicar(byte[] dato, AbstractQueue<byte[]> stack) {
+            stack.add(dato);
+        }
+    },
+
+    OP_PUSHDATA2((byte) 0x4d){
+        @Override
+        public void aplicar(byte[] dato, AbstractQueue<byte[]> stack) {
+            stack.add(dato);
+        }
+    },
+
+    OP_PUSHDATA4((byte) 0x4e){
         @Override
         public void aplicar(byte[] dato, AbstractQueue<byte[]> stack) {
             stack.add(dato);
