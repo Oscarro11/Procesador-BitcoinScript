@@ -2,7 +2,9 @@ package com.example;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.function.Consumer;
 
 public class ScriptStack extends LinkedBlockingDeque<byte[]> {
 
@@ -19,6 +21,16 @@ public class ScriptStack extends LinkedBlockingDeque<byte[]> {
     // PEEK arriba
     public byte[] peekItem() {
         return super.peekLast();
+    }
+
+    @Override
+    public Iterator<byte[]> iterator() {
+        return super.descendingIterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super byte[]> action) {
+        super.descendingIterator().forEachRemaining(action);
     }
 
     public void printStackState() {
