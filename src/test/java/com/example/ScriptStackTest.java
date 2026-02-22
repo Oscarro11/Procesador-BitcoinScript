@@ -2,8 +2,8 @@ package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import java.util.AbstractQueue;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -13,20 +13,20 @@ import org.junit.jupiter.api.Test;
 
 public class ScriptStackTest 
 {
-    AbstractQueue<byte[]> queue = new ScriptStack();
+    ScriptStack stack = new ScriptStack();
 
     @BeforeEach
     public void setUp(){
-        queue.add(new byte[]{1});
-        queue.add(new byte[]{2});
-        queue.add(new byte[]{3});
-        queue.add(new byte[]{4});
+        stack.pushItem(new byte[]{1});
+        stack.pushItem(new byte[]{2});
+        stack.pushItem(new byte[]{3});
+        stack.pushItem(new byte[]{4});
     }
 
     @Test
     public void iterator(){
-        ArrayList<byte[]> queueElements = new ArrayList<byte[]>();
-        queue.forEach(queueElements :: add);
+        ArrayList<byte[]> stackElements = new ArrayList<byte[]>();
+        stack.iterator().forEachRemaining(stackElements :: add);
 
         ArrayList<byte[]> resultado = new ArrayList<byte[]>();
         resultado.add(new byte[]{4});
@@ -34,15 +34,15 @@ public class ScriptStackTest
         resultado.add(new byte[]{2});
         resultado.add(new byte[]{1});
 
-        for (int i = 0; i < queueElements.size(); i++) {
-            assertArrayEquals(queueElements.get(i), resultado.get(i));
+        for (int i = 0; i < stackElements.size(); i++) {
+            assertArrayEquals(stackElements.get(i), resultado.get(i));
         }
     }
 
     @Test
     public void forEach(){
-        ArrayList<byte[]> queueElements = new ArrayList<byte[]>();
-        queue.forEach(queueElements :: add);
+        ArrayList<byte[]> stackElements = new ArrayList<byte[]>();
+        stack.forEach(stackElements :: add);
 
         BlockingDeque<byte[]> deque = new LinkedBlockingDeque<byte[]>();
         deque.add(new byte[]{1});
@@ -53,20 +53,20 @@ public class ScriptStackTest
         ArrayList<byte[]> dequeElements = new ArrayList<byte[]>();
         deque.descendingIterator().forEachRemaining(dequeElements :: add);
 
-        for (int i = 0; i < queueElements.size(); i++) {
-            assertArrayEquals(queueElements.get(i), dequeElements.get(i));
+        for (int i = 0; i < stackElements.size(); i++) {
+            assertArrayEquals(stackElements.get(i), dequeElements.get(i));
         }
     }
 
     @Test
     public void eliminarElementos(){
-        queue.clear();
-        Assertions.assertEquals(null, queue.poll());
+        stack.clear();
+        Assertions.assertEquals(null, stack.poll());
     }
 
     @Test
     public void getLast(){
         ScriptStack stack = new ScriptStack();
-        Assertions.assertEquals(null, stack.getLast());
+        Assertions.assertThrows(NoSuchElementException.class, () -> stack.popItem());
     }
 }
