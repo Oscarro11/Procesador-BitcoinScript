@@ -1,12 +1,28 @@
 package com.example;
 
 import java.util.Scanner;
-
+ /*
+    * Parte vista del programa
+    * Punto de entrada y menú interactivo del simulador de Bitcoin Script.
+    * Expone las capacidades del Controlador al usuario a través de una
+    * interfaz de consola, delegando toda la lógica de validación hacia él.
+    *
+    * Acepta el argumento --trace al iniciar para activar el modo de
+    * trazabilidad desde la línea de comandos, o permite habilitarlo
+    * por sesión desde la opción 2 del menú.
+    *
+    * @see Controlador
+*/
 public class App {
+     // Activa la impresión del estado del stack después de cada OPCODE ejecutado
     private static boolean traceMode = false;
-    private static Scanner teclado = new Scanner(System.in);
-    private static Controlador controlador = new Controlador();
 
+     // Lector compartido de entradas del usuario durante toda la sesión
+    private static Scanner teclado = new Scanner(System.in);
+
+    // Controlador de la validación; persiste entre opciones del menú
+    private static Controlador controlador = new Controlador();
+    
     public static void main(String[] args) throws Exception {
         boolean continuar = true;
         int opcion = 0;
