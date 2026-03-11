@@ -107,10 +107,25 @@ public class Controlador {
         List<OPCODE> opcodesFirma = convertidorFirma.getOpcodes();
         List<OPCODE> opcodesLlave = convertidorLlave.getOpcodes();
     
-        for (OPCODE opcode : opcodesFirma) {
+        if (!procesarBlockchain(opcodesFirma, dataToPushFirma)) {
+            return false;
+        }
+        else if (!procesarBlockchain(opcodesLlave, dataToPushLlave)){
+            return false;
+        }
+        else{
+            return (stack.size() == 1 && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
+        }
+    }
+
+    private boolean procesarBlockchain(List<OPCODE> opcodes, List<byte[]> dataToPush){
+        int i = 0;
+        while (i < opcodes.size()){
             try {
+                OPCODE opcode = opcodes.get(i);
+
                 if (OPCODE.isPUSHDATA(opcode)) {
-                    execute(opcode, dataToPushFirma.remove(0), stack);
+                    execute(opcode, dataToPush.remove(0), stack);
                 }
                 else{
                     execute(opcode, null, stack);
@@ -118,22 +133,11 @@ public class Controlador {
             } catch (Exception e) {
                 return false;
             }
+
+            i++;
         }
 
-        for (OPCODE opcode : opcodesLlave) {
-            try {
-                if (OPCODE.isPUSHDATA(opcode)) {
-                    execute(opcode, dataToPushLlave.remove(0), stack);
-                }
-                else{
-                    execute(opcode, null, stack);
-                }   
-            } catch (Exception e) {
-                return false;
-            }
-        }
-
-        return (stack.size() == 1 && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
+        return true;
     }
 
     /**
