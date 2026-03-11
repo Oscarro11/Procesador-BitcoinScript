@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.example.OPCODES.OPCODE;
 
-/*
+/**
     * Parser que traduce un script Bitcoin en formato de bytes crudos
     * a dos listas paralelas: los OPCODES identificados y las cargas de datos
     * asociadas a los OPCODES de tipo PUSHDATA.
@@ -22,7 +22,7 @@ import com.example.OPCODES.OPCODE;
 
 public class ConvertBytesToOP{
 
-    /*
+    /**
         * Posición actual dentro del array de bytes del script.
         * Se avanza manualmente durante el parseo para permitir que
         * PushDataBytes consuma los bytes de longitud y carga sin
@@ -30,7 +30,7 @@ public class ConvertBytesToOP{
      */ 
     private int cursor = 0;
 
-    /*
+    /**
         * Cargas de datos extraídas de los OPCODES de tipo PUSHDATA,
         * en el mismo orden en que aparecen en el script.
         * Se mantienen separadas de los OPCODES para que el Controlador
@@ -39,21 +39,21 @@ public class ConvertBytesToOP{
     private List<byte[]> dataToPush = new ArrayList<>();
 
 
-    /*
+    /**
         * Secuencia de OPCODES identificados en el script, en orden de aparición.
         * Incluye tanto los OPCODES de tipo PUSHDATA como el resto,
         * preservando el flujo de ejecución original del script.
      */
     private List<OPCODE> opcodes = new ArrayList<>();
 
-     /*
+     /**
         * El script Bitcoin en su representación de bytes crudos.
         * Es la fuente de datos que traducirToList y PushDataBytes recorren
         * durante el parseo inicial.
      */
     private byte[] linea;
 
-    /*
+    /**
         * Construye el convertidor a partir de un script en bytes y lo parsea
         * de inmediato, dejando las listas de OPCODES y datos listas para su consulta.
         * El parseo ocurre en construcción porque el convertidor no tiene estado
@@ -68,7 +68,7 @@ public class ConvertBytesToOP{
         traducirToList();
     }
 
-    /*
+    /**
         * Recorre el array de bytes del script e identifica cada OPCODE.
         * Cuando encuentra un OPCODE de tipo PUSHDATA, delega la extracción
         * de su carga a PushDataBytes para que el cursor avance correctamente
@@ -88,7 +88,7 @@ public class ConvertBytesToOP{
         }
     }
 
-     /*
+     /**
         * Extrae la carga de datos de un OPCODE PUSHDATA a partir de la
         * posición actual del cursor.
         * Cada variante de PUSHDATA indica en cuántos bytes viene codificada
@@ -126,7 +126,7 @@ public class ConvertBytesToOP{
 
         return newHead;   
     }
-    /*
+    /**
         * Retorna la lista de cargas de datos extraídas de los OPCODES PUSHDATA,
         * en el orden en que aparecen en el script original.
         * El Controlador consume esta lista de forma secuencial al despachar
@@ -138,7 +138,7 @@ public class ConvertBytesToOP{
         return dataToPush;
     }
 
-    /*
+    /**
         * Retorna la secuencia completa de OPCODES identificados en el script,
         * en el orden de aparición original.
         * El Controlador itera sobre esta lista para ejecutar el script

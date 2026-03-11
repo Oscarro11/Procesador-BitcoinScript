@@ -1,7 +1,7 @@
 package com.example;
 
 import java.util.Scanner;
- /*
+ /**
     * Parte vista del programa
     * Punto de entrada y menú interactivo del simulador de Bitcoin Script.
     * Expone las capacidades del Controlador al usuario a través de una
@@ -94,6 +94,7 @@ public class App {
                         else{
                             escribir("La firma no es adecuada para la llave publica, por lo que no se puede acceder a los fondos");
                         }
+                        traceMode = false;
                         
                     } catch (Exception e) {
                         escribir("La firma no es adecuada para la llave publica, por lo que no se puede acceder a los fondos");

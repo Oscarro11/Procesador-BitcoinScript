@@ -21,7 +21,6 @@ import java.util.function.Consumer;
     * @see OPCODE
  */
 public class ScriptStack extends LinkedBlockingDeque<byte[]> {
-
      /*
         * Empuja un elemento a la cima del stack.
         * Es la operación fundamental que todos los OPCODES de tipo PUSH

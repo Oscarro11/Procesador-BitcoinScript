@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.ScriptStack;
-/*
+/**
     * Enum que representa todos los OPCODES del Script de Bitcoin.
     * Cada const en el enum representa una instrucción en Bitcoin.
     * Cuando un script se ejecuta, sus bytes son decodificados en
@@ -31,7 +31,7 @@ public enum OPCODE {
     // en lugar de usar OP_PUSHDATA.
     // ─────────────────────────────────────────────────────────────────
 
-    /*
+    /**
         * Pushea el Integer {@code 0} al stack como un byte array [0].
         * Byte de OPCODE: {@code 0x00}
     */
@@ -41,7 +41,7 @@ public enum OPCODE {
             stack.pushItem(new byte[] { 0 });
         }
     },
-    /*
+    /**
         * Pushea el Integer {@code 1} al stack como un byte array [1].
         * Byte de OPCODE: {@code 0x51}
     */
@@ -53,7 +53,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 2} al stack como un byte array [2].
         * Comunmente se usa para el {@code m} y {@code n} en esquemas multisig m-of-n.
         * Byte de OPCODE: {@code 0x52}
@@ -65,7 +65,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 3} al stack como un byte array [3].
         * Byte de OPCODE: {@code 0x53}
     */
@@ -76,7 +76,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 4} al stack como un byte array [4].
         * Byte de OPCODE: {@code 0x54}
     */
@@ -87,7 +87,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 5} al stack como un byte array [5].
         * Byte de OPCODE: {@code 0x55}
     */
@@ -98,7 +98,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 6} al stack como un byte array [6].
         * Byte de OPCODE: {@code 0x56}
     */
@@ -109,7 +109,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 7} al stack como un byte array [7].
         * Byte de OPCODE: {@code 0x57}
     */
@@ -120,7 +120,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 8} al stack como un byte array [8].
         * Byte de OPCODE: {@code 0x58}
     */
@@ -131,7 +131,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 9} al stack como un byte array [9].
         * Byte de OPCODE: {@code 0x59}
     */
@@ -142,7 +142,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 10} al stack como un byte array [10].
         * Byte de OPCODE: {@code 0x5a}
     */
@@ -153,7 +153,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 11} al stack como un byte array [11].
         * Byte de OPCODE: {@code 0x5b}
     */
@@ -164,7 +164,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 12} al stack como un byte array [12].
         * Byte de OPCODE: {@code 0x5c}
     */
@@ -175,7 +175,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 13} al stack como un byte array [13].
         * Byte de OPCODE: {@code 0x5d}
     */
@@ -186,7 +186,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 14} al stack como un byte array [14].
         * Byte de OPCODE: {@code 0x5e}
     */
@@ -197,7 +197,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 15} al stack como un byte array [15].
         * Byte de OPCODE: {@code 0x5f}
     */
@@ -208,7 +208,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Pushea el Integer {@code 16} al stack como un byte array [16].
         * 16 es el número máximo que se puede pushear con un OPCODE numérico,
         * para números mayores se debe usar OP_PUSHDATA.
@@ -228,7 +228,7 @@ public enum OPCODE {
     // ─────────────────────────────────────────────────────────────────
 
 
-    /*
+    /**
         * Hace push de un array de bytes de hasta 255 bytes al stack.
         * En el script puro el opcode va seguido de un byte que funciona como
         * prefijo. El {@link ConvertBytesToOP} se encarga de extraer el prefijo
@@ -245,7 +245,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Hace push de un array de bytes de hasta 65535 bytes al stack.
         * En el script puro el opcode va seguido de dos bytes que funcionan como
         * prefijo. El {@link ConvertBytesToOP} se encarga de extraer el prefijo
@@ -262,7 +262,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Hace push de un array de bytes de hasta 4294967295 bytes al stack.
         * En el script puro el opcode va seguido de cuatro bytes que funcionan como
         * prefijo. El {@link ConvertBytesToOP} se encarga de extraer
@@ -285,7 +285,7 @@ public enum OPCODE {
     // OPCODES DE MANIPULACIÓN DE STACK: OP_DUP, OP_DROP
     // ─────────────────────────────────────────────────────────────────
 
-    /*
+    /**
         * Duplica el elemento en la cima del stack.
         * Escencial para el P2PKH, donde se duplica la clave pública para hashearla 
         * y comparar con el hash esperado.
@@ -307,7 +307,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Elimina el elemento en la cima del stack.
         * Útil para descartar datos que no son necesarios para la autenticación,
         * como un byte de versión o flag al inicio del scriptSig.
@@ -332,7 +332,7 @@ public enum OPCODE {
     // OPCODES DE COMPARACIÓN: OP_EQUAL, OP_EQUALVERIFY
     // ─────────────────────────────────────────────────────────────────
 
-    /*
+    /**
         * Compara los dos elementos superiores del stack. Si son iguales, 
         * pushea 1, si no, pushea 0.
         * Esencial para verificar que el hash de la clave pública coincida con 
@@ -358,7 +358,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Hace POP de los 2 elementos superiores del stack y hace un throw
         * si no son iguales. Es como OP_EQUAL pero en lugar de pushear el resultado,
         * valida que sean iguales y falla el script si no lo son.
@@ -393,7 +393,7 @@ public enum OPCODE {
     // OPCODES DE HASHING Y VERIFICACIÓN DE FIRMA: OP_HASH160, OP_CHECKSIG
     // ─────────────────────────────────────────────────────────────────
 
-    /*
+    /**
         * Hace POP del elemento superior del stack, le aplica la función hash160 (RIPEMD160(SHA256(x)))
         * y pushea el resultado en 20 bytes.
         * Hash160 es el estándar en como Bitcoin compacta las claves públicas para 
@@ -419,7 +419,7 @@ public enum OPCODE {
         }
     },
 
-    /*
+    /**
         * Verifica una firma digital con una llave pública.
         * Hace POP de la firma y la clave pública, y pushea 1 si la firma es 
         * válida para esa clave, o 0 si no lo es.
@@ -450,13 +450,13 @@ public enum OPCODE {
                     ? new byte[] { 1 }
                     : new byte[] { 0 });
         }
-    };
+    }; 
 
     // ─────────────────────────────────────────────────────────────────
     // Infraestructura del enum OPCODE
     // ─────────────────────────────────────────────────────────────────
 
-    /*
+    /**
         * Mapea cada byte de protocolo hacia su respectivo const {@code OPCODE}
         * Se precarga para que {@link #fromId(byte)} pueda obtener el OPCODE en O(1) 
         * dado su byte de protocolo. Sin tener que iterar sobre {@link #values()} 
@@ -472,14 +472,14 @@ public enum OPCODE {
     // El identificador byte asignado al protocolo Bitcoin
     private final byte code;
 
-    /*
+    /**
         * Constructor del enum OPCODE, asigna el byte de protocolo a cada const.
         * @param code el byte de protocolo que identifica este OPCODE en Bitcoin
     */
     OPCODE(byte code) {
         this.code = code;
     }
-    /*
+    /**
         * Método abstracto que cada OPCODE implementa para definir su comportamiento específico.
         * @param dato es un array de bytes que algunos OPCODES pueden usar como carga (e.g. OP_PUSHDATA)
         * @param stack el stack donde el OPCODE realiza sus operaciones
@@ -487,7 +487,7 @@ public enum OPCODE {
     */
     public abstract void aplicar(byte[] dato, ScriptStack stack) throws Exception;
 
-    /*
+    /**
         * Dado un byte de protocolo, retorna el OPCODE correspondiente.
         * @param code el byte de protocolo a buscar
         * @return el OPCODE correspondiente al byte dado
@@ -501,7 +501,7 @@ public enum OPCODE {
         return op;
     }
 
-    /*
+    /**
         * Método de utilidad para verificar si un OPCODE es un OP_PUSHDATA.
         * @param op el OPCODE a verificar
         * @return true si el OPCODE es OP_PUSHDATA1, OP_PUSHDATA2 o OP_PUSHDATA4; 

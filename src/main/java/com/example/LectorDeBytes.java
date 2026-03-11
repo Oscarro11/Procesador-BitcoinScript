@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HexFormat;
 
-/*
+/**
     * Clase para leer scripts Bitcoin desde archivos de texto
     * y convertirlos a su representación en bytes crudos.
     *
@@ -19,7 +19,7 @@ import java.util.HexFormat;
  */
 public class LectorDeBytes {
 
-    /*
+    /**
         * Lee un archivo de texto que contiene un script Bitcoin en formato
         * hexadecimal y retorna su equivalente en bytes crudos.
         * Separar la lectura del disco de la lógica de parseo permite que

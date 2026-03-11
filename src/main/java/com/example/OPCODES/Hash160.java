@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.Security;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-/*
+/**
     * Utilidad criptográfica que implementa el algoritmo HASH160,
     * estándar de Bitcoin para derivar identificadores compactos de 20 bytes
     * a partir de claves públicas.
@@ -20,7 +20,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class Hash160 {
 
-     /*
+     /**
         * Registra el proveedor criptográfico BouncyCastle en la JVM.
         * Necesario para que MessageDigest pueda resolver el algoritmo
         * RIPEMD-160, que no está disponible en los proveedores estándar de Java.
@@ -31,7 +31,7 @@ public class Hash160 {
         Security.addProvider(new BouncyCastleProvider());
     }
 
-    /*
+    /**
         * Aplica el algoritmo SHA-256 a los bytes de entrada y retorna su digest.
         * SHA-256 es la primera etapa del HASH160 y es responsable de la
         * resistencia criptográfica del resultado final, garantizando que
@@ -47,7 +47,7 @@ public class Hash160 {
         return digest.digest(input);
     }
 
-    /*
+    /**
         * Aplica el algoritmo RIPEMD-160 a los bytes de entrada y retorna su digest.
         * RIPEMD-160 es la segunda etapa del HASH160 y es responsable de
         * comprimir el output de 32 bytes de SHA-256 a un identificador
@@ -66,7 +66,7 @@ public class Hash160 {
         return digest.digest(input);
     }
 
-    /*
+    /**
         * Calcula el HASH160 de los bytes de entrada aplicando SHA-256 seguido de RIPEMD-160.
         * Es el método principal de esta clase y el que consume OP_HASH160 directamente.
         * El resultado de 20 bytes es lo que se almacena en el scriptPubKey como

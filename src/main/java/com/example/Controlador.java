@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Arrays;
 
 import com.example.OPCODES.OPCODE;
-/*
+/**
     * Controlador principal de la validación de transacciones Bitcoin.
     * Coordina la lectura de los scripts, su conversión a OPCODES y la
     * ejecución secuencial del scriptSig (firma) seguido del scriptPubKey (llave),
@@ -24,33 +24,33 @@ import com.example.OPCODES.OPCODE;
  */
 public class Controlador {
 
-     /*
+     /**
         * Stack compartido sobre el que se ejecutan todos los OPCODES.
         * Se limpia al inicio de cada evaluación para garantizar que
         * transacciones anteriores no contaminen el estado actual.
      */
     private ScriptStack stack = new ScriptStack();
 
-    /*
+    /**
         * Convertidor que procesa los bytes del scriptSig (firma del gastador)
         * y los traduce a una lista de OPCODES ejecutables.
     */
     private ConvertBytesToOP convertidorFirma;
 
-    /*
+    /**
         * Convertidor que procesa los bytes del scriptPubKey (llave pública bloqueada)
         * y los traduce a una lista de OPCODES ejecutables.
     */
     private ConvertBytesToOP convertidorLlave;
 
-    /*
+    /**
         * Controla si la ejecución imprime el estado del stack después
         * de cada OPCODE.
      */
     private boolean traceMode = false;
 
 
-    /*
+    /**
         * Carga y procesa los scripts de firma y llave pública desde archivos de texto
         * que contienen su representación hexadecimal.
         * Debe llamarse antes de evaluarTransaccion, ya que establece los
@@ -77,7 +77,7 @@ public class Controlador {
         convertidorLlave = new ConvertBytesToOP(llavePublica);
     }
 
-    /*
+    /**
         * Evalúa si la transacción es válida ejecutando el scriptSig seguido
         * del scriptPubKey sobre un stack limpio.
         * Replica el modelo de validación de Bitcoin: el scriptSig aporta
@@ -136,7 +136,7 @@ public class Controlador {
         return (stack.size() == 1 && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
     }
 
-    /*
+    /**
         * Despacha un OPCODE sobre el stack e imprime el estado resultante
         * si el modo trace está activo.
         * Al centralizar la ejecución en este método, el traceMode se aplica
