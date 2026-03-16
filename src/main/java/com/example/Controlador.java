@@ -120,16 +120,42 @@ public class Controlador {
 
     private boolean procesarBlockchain(List<OPCODE> opcodes, List<byte[]> dataToPush){
         int i = 0;
+        
+        int countIfElse = 0;
+        int countIfEnd = 0;
+        boolean aceptar = true;
+
         while (i < opcodes.size()){
             try {
                 OPCODE opcode = opcodes.get(i);
-
-                if (OPCODE.isPUSHDATA(opcode)) {
-                    execute(opcode, dataToPush.remove(0), stack);
+                if (opcode == OPCODE.OP_ELSE) {
+                    aceptar = !aceptar;
+                    countIfElse--;
+                    if (countIfElse < 0) {
+                        throw new Exception("Se tuvo un else sin el if adecuado");
+                    }
                 }
-                else{
-                    execute(opcode, null, stack);
-                }   
+                else if (opcode == OPCODE.OP_ENDIF) {
+                    aceptar = true;
+                    countIfEnd--;
+                    if (countIfEnd < 0) {
+                        throw new Exception("Se tuvo un else sin el if adecuado");
+                    }
+                }
+                else if (aceptar) {
+                    if (opcode == OPCODE.OP_IF) {
+                        aceptar = opcode.evaluar(stack);
+                        countIfElse++;
+                        countIfEnd++;
+                    }
+                    else if (OPCODE.isPUSHDATA(opcode)) {
+                        execute(opcode, dataToPush.remove(0), stack);
+                    }
+                    else{
+                        execute(opcode, null, stack);
+                    }   
+                }
+                 
             } catch (Exception e) {
                 return false;
             }
@@ -137,7 +163,7 @@ public class Controlador {
             i++;
         }
 
-        return true;
+        return countIfEnd == 0;
     }
 
     /**

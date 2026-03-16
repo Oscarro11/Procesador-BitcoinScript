@@ -40,6 +40,11 @@ public enum OPCODE {
         public void aplicar(byte[] dato, ScriptStack stack) {
             stack.pushItem(new byte[] { 0 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
     /**
         * Pushea el Integer {@code 1} al stack como un byte array [1].
@@ -50,6 +55,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 1 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -63,6 +73,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 2 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -73,6 +88,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 3 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -85,6 +105,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 4 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -95,6 +120,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 5 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -107,6 +137,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 6 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -117,6 +152,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 7 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -129,6 +169,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 8 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -139,6 +184,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 9 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -151,6 +201,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 10 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -161,6 +216,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 11 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -173,6 +233,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 12 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -183,6 +248,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 13 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -195,6 +265,11 @@ public enum OPCODE {
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 14 });
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -205,6 +280,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 15 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -219,6 +299,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] d, ScriptStack s) {
             s.pushItem(new byte[] { 16 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -243,6 +328,11 @@ public enum OPCODE {
         public void aplicar(byte[] dato, ScriptStack stack) {
             stack.pushItem(dato);
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -259,6 +349,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] dato, ScriptStack stack) {
             stack.pushItem(dato);
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -278,6 +373,11 @@ public enum OPCODE {
         @Override
         public void aplicar(byte[] dato, ScriptStack stack) {
             stack.pushItem(dato);
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -305,6 +405,11 @@ public enum OPCODE {
 
             stack.pushItem(stack.peekItem());
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     /**
@@ -325,6 +430,11 @@ public enum OPCODE {
                 throw new IllegalStateException("Stack vacio en OP_DROP");
 
             stack.popItem();
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -355,6 +465,11 @@ public enum OPCODE {
             byte[] b = stack.popItem();
 
             stack.pushItem(Arrays.equals(a, b) ? new byte[] { 1 } : new byte[] { 0 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -387,6 +502,11 @@ public enum OPCODE {
             if (!Arrays.equals(a, b))
                 throw new IllegalStateException("OP_EQUALVERIFY fallo");
         }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
     },
 
     // ─────────────────────────────────────────────────────────────────
@@ -416,6 +536,11 @@ public enum OPCODE {
 
             byte[] value = stack.popItem();
             stack.pushItem(Hash160.hash160(value));
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
         }
     },
 
@@ -450,7 +575,47 @@ public enum OPCODE {
                     ? new byte[] { 1 }
                     : new byte[] { 0 });
         }
-    }; 
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
+    },
+
+    OP_IF((byte) 0x63) {
+        @Override
+        public void aplicar(byte[] dato, ScriptStack stack) {
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            return Arrays.equals(stack.popItem(), new byte[]{ 1 });
+        }
+    },
+
+    OP_ELSE((byte) 0x67){
+        @Override
+        public void aplicar(byte[] dato, ScriptStack stack) {
+            throw new IllegalStateException("Este else no tiene un if previo");
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
+    },
+
+    OP_ENDIF((byte) 0x68){
+        @Override
+        public void aplicar(byte[] dato, ScriptStack stack) {
+            throw new IllegalStateException("Este endif no tiene un if previo");
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
+    };
 
     // ─────────────────────────────────────────────────────────────────
     // Infraestructura del enum OPCODE
@@ -486,6 +651,7 @@ public enum OPCODE {
         * @throws Exception si ocurre algún error durante la aplicación del OPCODE
     */
     public abstract void aplicar(byte[] dato, ScriptStack stack) throws Exception;
+    public abstract boolean evaluar(ScriptStack stack);
 
     /**
         * Dado un byte de protocolo, retorna el OPCODE correspondiente.
