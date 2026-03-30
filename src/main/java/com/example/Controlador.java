@@ -114,7 +114,7 @@ public class Controlador {
             return false;
         }
         else{
-            return (stack.size() == 1 && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
+            return (!stack.isEmpty() && Arrays.equals(stack.popItem(), new byte[]{ 1 }));
         }
     }
 

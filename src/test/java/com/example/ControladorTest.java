@@ -51,4 +51,28 @@ public class ControladorTest {
 
         Assertions.assertTrue(controlador.evaluarTransaccion(false));
     }
+
+    //Este test evalua script con multisig 2 de 3
+    @Test
+    public void combinacion5(){
+        Controlador controlador = new Controlador();
+        String rutaFirma = "src/test/resources/firma5.txt";
+        String rutaLlave = "src/test/resources/llave5.txt";
+
+        controlador.obtenerFirmaYLlave(rutaFirma, rutaLlave);
+
+        Assertions.assertTrue(controlador.evaluarTransaccion(false));
+    }
+
+    //Este test evalua script con multisig 2 de 3, pero provoca fallo
+    @Test
+    public void combinacion6(){
+        Controlador controlador = new Controlador();
+        String rutaFirma = "src/test/resources/firma6.txt";
+        String rutaLlave = "src/test/resources/llave6.txt";
+
+        controlador.obtenerFirmaYLlave(rutaFirma, rutaLlave);
+
+        Assertions.assertFalse(controlador.evaluarTransaccion(false));
+    }
 }

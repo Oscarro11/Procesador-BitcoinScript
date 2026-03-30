@@ -3,7 +3,10 @@ package com.example.OPCODES;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
+import com.example.ConvertBytesToOP;
 import com.example.ScriptStack;
 /**
     * Enum que representa todos los OPCODES del Script de Bitcoin.
@@ -574,6 +577,56 @@ public enum OPCODE {
             stack.pushItem(Arrays.equals(publicKey, signature)
                     ? new byte[] { 1 }
                     : new byte[] { 0 });
+        }
+
+        @Override
+        public boolean evaluar(ScriptStack stack) {
+            throw new IllegalStateException("Esta operacion no puede evaluar el Stack");
+        }
+    },
+
+    OP_CHECKMULTISIG((byte) 0xae){
+        @Override
+        public void aplicar(byte[] dato, ScriptStack stack) throws Exception {
+            List<byte[]> pubKeyList = new ArrayList<byte[]>();
+            List<byte[]> sigList = new ArrayList<byte[]>();
+            
+            int cantPubKey = stack.popItem()[0];
+            for (int i = 0; i < cantPubKey; i++) {
+                pubKeyList.add(stack.popItem());
+            }
+
+            int cantSig = stack.popItem()[0];
+            if (cantSig > cantPubKey) { throw new IllegalStateException("Hay mas firmas que llaves en OP_CHECKMULTISIG"); }
+            for (int i = 0; i < cantSig; i++) {
+                sigList.add(stack.popItem());
+            }
+
+            int contExitos = 0;
+            int indexCurrentSig = 0;
+            int indexCurrentPubKey = 0;
+            byte[] currentSig = sigList.get(0);
+
+            while (indexCurrentPubKey < pubKeyList.size()) {
+                if (Arrays.equals(currentSig, pubKeyList.get(indexCurrentPubKey))) {
+                    contExitos++;
+
+                    if (contExitos == cantSig) {
+                        stack.pushItem(new byte[]{ 1 });
+                        break;
+                    }
+                    else{
+                        indexCurrentSig++;
+                        currentSig = sigList.get(indexCurrentSig);
+                    }
+                }
+
+                indexCurrentPubKey++;
+            }
+
+            if (contExitos != cantSig) {
+                throw new Exception("El checkeo de OP_CHECKMULTISIG resulto negativo");
+            }
         }
 
         @Override
