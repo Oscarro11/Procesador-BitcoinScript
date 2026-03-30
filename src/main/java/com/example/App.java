@@ -23,6 +23,12 @@ public class App {
     // Controlador de la validación; persiste entre opciones del menú
     private static Controlador controlador = new Controlador();
     
+    /**
+     * Método principal que inicia el programa y muestra el menú.
+     * Permite al usuario elegir opciones para cargar archivos o evaluar transacciones.
+     * @param args Argumentos de la línea de comandos. Usa --trace para habilitar el modo de trazabilidad.
+     * @throws Exception Si ocurre un error durante la ejecución.
+     */
     public static void main(String[] args) throws Exception {
         boolean continuar = true;
         int opcion = 0;
